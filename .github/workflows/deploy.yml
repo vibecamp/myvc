@@ -75,6 +75,11 @@ jobs:
         env:
           DOCKER_HOST: "ssh://ssh.vibe.camp"
 
+      - name: "Remove unused myvc images"
+        run: docker image prune -af --filter "label=org.opencontainers.image.source=https://github.com/vibecamp/myvc"
+        env:
+          DOCKER_HOST: "ssh://ssh.vibe.camp"
+
       - uses: "actions/delete-package-versions@v5"
         with:
           package-name: "myvc"
