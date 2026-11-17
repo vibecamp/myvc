@@ -30,8 +30,10 @@ jobs:
       - name: "Build and push the image"
         run: |
           echo "$GITHUB_TOKEN" | docker login ghcr.io -u "$GITHUB_ACTOR" --password-stdin
-          docker build -t "ghcr.io/vibecamp/myvc:$IMAGE_TAG" app
-          docker push "ghcr.io/vibecamp/myvc:$IMAGE_TAG"
+          if ! docker manifest inspect "ghcr.io/vibecamp/myvc:$IMAGE_TAG" > /dev/null 2>&1; then
+            docker build --provenance=false -t "ghcr.io/vibecamp/myvc:$IMAGE_TAG" app
+            docker push "ghcr.io/vibecamp/myvc:$IMAGE_TAG"
+          fi
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
 
@@ -72,3 +74,9 @@ jobs:
         run: docker compose -f deploy/docker-compose.yml up -d --wait
         env:
           DOCKER_HOST: "ssh://ssh.vibe.camp"
+
+      - uses: "actions/delete-package-versions@v5"
+        with:
+          package-name: "myvc"
+          package-type: "container"
+          min-versions-to-keep: 5
