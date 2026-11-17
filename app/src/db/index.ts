@@ -9,7 +9,11 @@ const pool = new Pool({
     connectionString: env.DATABASE_URL,
     max: 10,
 
-    ssl: url.hostname.endsWith('.render.com') ? { rejectUnauthorized: true } : undefined,
+    ssl: env.DATABASE_CA
+        ? { ca: env.DATABASE_CA }
+        : url.hostname.endsWith('.render.com')
+          ? { rejectUnauthorized: true }
+          : undefined,
 })
 
 export const db = drizzle({ client: pool, schema })

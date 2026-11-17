@@ -3,9 +3,9 @@ name: app
 on:
     push:
         branches: [main]
-        paths: ['app/**', '.gitignore', '.github/workflows/app.yml']
+        paths: ['app/**', 'deploy/**', '.gitignore', '.github/workflows/app.yml']
     pull_request:
-        paths: ['app/**', '.gitignore', '.github/workflows/app.yml']
+        paths: ['app/**', 'deploy/**', '.gitignore', '.github/workflows/app.yml']
 
 defaults:
     run:
@@ -19,7 +19,7 @@ jobs:
         runs-on: ubuntu-latest
         services:
             postgres:
-                image: postgres:15-alpine
+                image: postgres:18-alpine
                 env:
                     POSTGRES_USER: postgres
                     POSTGRES_PASSWORD: postgres

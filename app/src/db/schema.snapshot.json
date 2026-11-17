@@ -3106,7 +3106,7 @@
      "type": "text"
     }
    },
-   "definition": "SELECT purchase.purchased_on, purchase.purchase_type_id, purchase.owned_by_account_id, purchase.purchase_id, purchase.stripe_payment_intent, purchase.checked_in, purchase.is_test_purchase, purchase.applied_discount FROM purchase ORDER BY purchase.purchased_on DESC",
+   "definition": "SELECT purchased_on, purchase_type_id, owned_by_account_id, purchase_id, stripe_payment_intent, checked_in, is_test_purchase, applied_discount FROM purchase ORDER BY purchased_on DESC",
    "isExisting": false,
    "materialized": false,
    "name": "purchase sorted",
