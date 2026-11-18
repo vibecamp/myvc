@@ -1890,10 +1890,6 @@
   },
   "public.image": {
    "checkConstraints": {
-    "image_content_type_check": {
-     "name": "image_content_type_check",
-     "value": "content_type = ANY (ARRAY['image/png'::text, 'image/jpeg'::text, 'image/webp'::text])"
-    },
     "image_height_check": {
      "name": "image_height_check",
      "value": "height > 0"
@@ -1904,24 +1900,12 @@
     }
    },
    "columns": {
-    "content_type": {
-     "name": "content_type",
-     "notNull": true,
-     "primaryKey": false,
-     "type": "text"
-    },
     "created_at": {
      "default": "now()",
      "name": "created_at",
      "notNull": true,
      "primaryKey": false,
      "type": "timestamp with time zone"
-    },
-    "data": {
-     "name": "data",
-     "notNull": true,
-     "primaryKey": false,
-     "type": "bytea"
     },
     "height": {
      "name": "height",

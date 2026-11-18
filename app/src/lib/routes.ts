@@ -20,7 +20,8 @@ export const buyTicketsPath = (festivalId: string) =>
 export const eventPath = (eventId: string) => `${EVENTS_PATH}/${encodeURIComponent(eventId)}`
 export const editEventPath = (eventId: string) => `${eventPath(eventId)}/edit`
 export const locationPath = (locationId: string) => `/locations/${encodeURIComponent(locationId)}`
-export const imagePath = (imageId: string) => `/images/${encodeURIComponent(imageId)}`
+export const imagePath = (imageId: string) =>
+    `https://vibecamp-prod-myvc.nyc3.cdn.digitaloceanspaces.com/images/${encodeURIComponent(imageId)}`
 
 export const SUPPORT_EMAIL_HREF = `mailto:${t('login.supportEmailLinkText')}`
 export const TERMS_URL = 'https://vibe.camp/terms'
