@@ -551,13 +551,10 @@ export const location = pgTable("location", {
 
 export const image = pgTable("image", {
 	image_id: uuid().defaultRandom().primaryKey().notNull(),
-	content_type: text().notNull(),
 	width: integer().notNull(),
 	height: integer().notNull(),
-	data: bytea("data").notNull(),
 	created_at: timestamp({ withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 }, (table): PgTableExtraConfigValue[] => [
-	check("image_content_type_check", sql`content_type = ANY (ARRAY['image/png'::text, 'image/jpeg'::text, 'image/webp'::text])`),
 	check("image_width_check", sql`width > 0`),
 	check("image_height_check", sql`height > 0`),
 ]);
